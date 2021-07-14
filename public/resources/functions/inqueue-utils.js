@@ -40,17 +40,17 @@ exports.handler = JWEValidator(async function (context, event, callback) {
   let mode = event.mode;
 
   //  testing async function to push results to webhook request site for debugging -  DEV ONLY
-  async function devTesting(item) {
-    try {
-      await axios.post(
-        'https://webhook.site/7c341c7f-08cf-4308-b006-e2cd30cdfffe',
-        { item: item }
-      );
-    } catch (error) {
-      console.log('devTesting error');
-      handleError(error)
-    }
-  }
+  // async function devTesting(item) {
+  //   try {
+  //     await axios.post(
+  //       'https://webhook.site/7c341c7f-08cf-4308-b006-e2cd30cdfffe',
+  //       { item: item }
+  //     );
+  //   } catch (error) {
+  //     console.log('devTesting error');
+  //     handleError(error)
+  //   }
+  // }
 
   //    global function to update callback Task attributes
   //    controlling the UI call button view

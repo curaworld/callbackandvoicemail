@@ -35,8 +35,8 @@ exports.handler = async function(context, event, callback) {
 
   const statPeriod = 5; //  time interval (minutes) to gather cummulative statistics
 
-  const getEwt = true;
-  const getQueuePosition = true;
+  const getEwt = false;
+  const getQueuePosition = false;
 
   //    END CUSTOMIZATIONS
 
@@ -65,20 +65,20 @@ exports.handler = async function(context, event, callback) {
   // BEGIN: Supporting functions for Estimated Wait Time and Position in Queue
 
   //  DEBUGGING ONLY - REMOVE FROM PROD CODE
-  async function devTesting(desc, item) {
-    try {
-      await axios.post(
-        'https://webhook.site/7c341c7f-08cf-4308-b006-e2cd30cdfffe',
-        {
-          desc: desc,
-          item: item
-        }
-      );
-    } catch (error) {
-      console.log('devTesting error');
-      handleError(error);
-    }
-  }
+  // async function devTesting(desc, item) {
+  //   try {
+  //     await axios.post(
+  //       'https://webhook.site/7c341c7f-08cf-4308-b006-e2cd30cdfffe',
+  //       {
+  //         desc: desc,
+  //         item: item
+  //       }
+  //     );
+  //   } catch (error) {
+  //     console.log('devTesting error');
+  //     handleError(error);
+  //   }
+  // }
 
   //  retrieve workflow cummulative statistics for Estimated wait time
   async function getWorkflowCummStats(workflowSid) {
@@ -325,11 +325,11 @@ exports.handler = async function(context, event, callback) {
         if (event.skipGreeting !== 'true') {
           let initGreeting = waitMsg + posQueueMsg;
           initGreeting +=
-            '...Please wait while we direct your call to the next available specialist...';
+            '...We are busy helping other callers....';
           twiml.say(sayOptions, initGreeting);
         }
         message =
-          'To listen to a menu of options while on hold, press 1 at anytime.';
+          'To listen to a menu of options while on hold, press 1 at anytime. Also you can text us directly at 855 903 2872';
         const gather = twiml.gather({
           input: 'dtmf',
           timeout: '2',
