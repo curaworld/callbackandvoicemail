@@ -21,15 +21,15 @@ export default class InQueueMessagingPlugin extends FlexPlugin {
   async init(flex, manager) {
     this.registerReducers(manager);
 
-    flex.Actions.replaceAction("HoldCall", (payload, original) => {
-      console.log("ON HOLD");
+    flex.Actions.replaceAction('HoldCall', (payload, original) => {
+      console.log('ON HOLD');
       return new Promise((resolve, reject) => {
         resolve();
       }).then(() => {
         original({
           ...payload,
-          holdMusicUrl: "https://vm-cb-functions-4374.twil.io/guitar_music.mp3",
-          holdMusicMethod: "POST",
+          holdMusicUrl: 'https://vm-cb-functions-4374.twil.io/guitar_music.mp3',
+          holdMusicMethod: 'POST',
         });
       });
     });
